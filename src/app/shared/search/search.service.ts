@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,6 +10,18 @@ export class SearchService {
   getAll(): Observable<Person[]> {
   return this.http.get<Person[]>('assets/data/people.json');
   }
+  search(q: string): Observable<Person[]> {
+    if (!q || q === '*') {
+    q = '';
+    } else {
+    q = q.toLowerCase();
+    }
+    return this.getAll().pipe(
+    map((data: Person[]) => data
+    .filter((item: Person) => JSON.stringify(item).toLowerCase().includes(q)))
+    );
+    }
+  
 }
 export class Address {
   street: string;
@@ -34,4 +47,5 @@ export class Person {
   this.address = obj?.address || null;
   }
 }
+
 

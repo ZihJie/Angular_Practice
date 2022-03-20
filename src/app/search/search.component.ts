@@ -8,7 +8,7 @@ import { Person, SearchService } from '../shared';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  query: string | undefined;
+  query!: string ;
   searchResults: any;
   constructor(private searchService: SearchService) { }
 
@@ -16,11 +16,9 @@ export class SearchComponent implements OnInit {
   }
 
   search(): void {
-    this.searchService.getAll().subscribe({
-    next: (data: Person[]) => { this.searchResults = data },
-    error: (e) => console.log(e)
-    });
+    this.searchService.search(this.query).subscribe(
+    (data: Person[]) => { this.searchResults = data; },   
+    error => console.log(error)
+    );
   }
-  
-
 }
