@@ -34,8 +34,6 @@ export class SearchService {
   save(person: Person) {
     localStorage['person' + person.id] = JSON.stringify(person);
   }
-
-
 }
 export class Address {
   street: string;
