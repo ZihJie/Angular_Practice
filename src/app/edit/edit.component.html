@@ -17,10 +17,10 @@
         <fieldset>
             <legend>Address:</legend>
             <address>
-                <input [(ngModel)]="person.address.street" id="street"><br />
-                <input [(ngModel)]="person.address.city" id="city">,
-                <input [(ngModel)]="person.address.state" id="state" size="2">
-                <input [(ngModel)]="person.address.zip" id="zip" size="5">
+                <input [(ngModel)]="person.address.street" name="street" id="street"><br />
+                <input [(ngModel)]="person.address.city" name="city" id="city">,
+                <input [(ngModel)]="person.address.state" name="state" id="state" size="2">
+                <input [(ngModel)]="person.address.zip" name="zip" id="zip" size="5">
             </address>
         </fieldset>
         <button type="submit" id="save" [disabled]="!editForm.form.valid">Save</button>
